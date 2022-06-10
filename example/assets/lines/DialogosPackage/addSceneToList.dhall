@@ -27,36 +27,30 @@ let fromIndexedLineToLine : IndexedLine -> Line =
         , event = indexedLine.value.event
         , name = indexedLine.value.name
         , number = indexedLine.index
-        , pauseEnd = indexedLine.value.pauseEnd
-        , pauseStart = indexedLine.value.pauseStart
+        , pause = indexedLine.value.pause
         , scene = indexedLine.value.scene
-        , set = indexedLine.value.set
         , sound = indexedLine.value.sound
         , text = indexedLine.value.text
         }
 
-let addSetAndScene : Text -> Text -> Line -> Line =
-    \(set : Text) ->
+let addSceneToLine : Text -> Line -> Line =
     \(scene : Text) -> 
     \(line : Line) ->
-        { code = "${set}${line.code}"
+        { code = "${scene}${line.code}"
         , emotion = line.emotion
         , event = line.event
         , name = line.name
         , number = line.number
-        , pauseEnd = line.pauseEnd
-        , pauseStart = line.pauseStart
+        , pause = line.pause
         , scene
-        , set
         , sound = line.sound
         , text = line.text
         }
 
-let newLineSet : Text -> Text -> List Line -> List Line =
-    \(set : Text) ->
+let addSceneToList : Text -> List Line -> List Line =
     \(scene : Text) ->
     \(lines : List Line) ->
-        let addSetAndScene = addSetAndScene set scene
+        let addSceneToLine = addSceneToLine scene
 
         let part1 =
             map
@@ -69,9 +63,9 @@ let newLineSet : Text -> Text -> List Line -> List Line =
             map
             Line
             Line
-            addSetAndScene
+            addSceneToLine
             part1
 
         in  part2
 
-in  newLineSet
+in  addSceneToList

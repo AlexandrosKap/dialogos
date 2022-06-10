@@ -1,28 +1,79 @@
 import 'dart:io';
 
-/// TODO: Not done but can print csv to terminal.
+// TODO: Works but check it again.
 
-/// Creates a CSV file from a language directory.
-void main(List<String> arguments) async {
-  if (arguments.length == 1) {
-    final directory = Directory(arguments[0]);
-    final dhallToCsvExe = 'dhall-to-csv';
+void dhallsToCsv(String language, List<String> dhalls) async {
+  final String dhallToCsvExe;
+  final String tempFile;
+  final String separator;
 
-    try {
-      for (var file in directory.listSync(recursive: true)) {
-        if (file.path.endsWith('.dhall')) {
-          final process = await Process.start(
-            dhallToCsvExe,
-            ['--file', file.path],
-            runInShell: true
-          );
-          await stdout.addStream(process.stdout);
+  if (Platform.isLinux || Platform.isMacOS || Platform.isFuchsia) {
+    dhallToCsvExe = 'dhall-to-csv';
+    separator = '/';
+  } else {
+    dhallToCsvExe = 'dhall-to-csv.exe';
+    separator = '\\';
+  }
+  tempFile = '$language$separator.temp.dhall';
+
+  final file = await File(tempFile).create();
+  final sink = file.openWrite();
+  sink.write(
+'''
+let package = ./package.dhall
+let Line = package.Line
+let addSceneToList = package.addSceneToList
+in
+'''
+  );
+  for (var dhall in dhalls) {
+    final scene = dhall
+      .substring(0, dhall.lastIndexOf('.dhall'))
+      .replaceFirst('$language$separator', '');
+    sink.write(
+      '(addSceneToList "$scene" ($dhall))#\n'
+    );
+  }
+  sink.write('([] : List Line)\n');
+  await sink.close();
+
+  final languageName = language
+    .substring(language.lastIndexOf(separator) + 1, language.length);
+  final outputFile = '$language$separator..$separator$languageName.csv';
+  final process = await Process.start(
+    dhallToCsvExe,
+    ['--file', tempFile, '--output', outputFile],
+    runInShell: true
+  );
+  await stderr.addStream(process.stderr);
+  file.delete();
+}
+
+/// Make CSV files from language directories.
+void main() async {
+  final languages =
+    (Platform.isLinux || Platform.isMacOS || Platform.isFuchsia)
+    ? 'assets/lines/languages'
+    : 'assets\\lines\\languages';
+
+  for (var file in Directory.current.listSync(recursive: true)) {
+    if (file.path.endsWith(languages) && file is Directory) {
+      for (var language in file.listSync()) {
+        if (language is Directory) {
+          List<String> dhalls = [];
+          for (var scene in language.listSync()) {
+            if (scene is Directory) {
+              for (var dhall in scene.listSync(recursive: true)) {
+                if (dhall.path.endsWith('.dhall')) {
+                  dhalls.add(dhall.path);
+                }
+              }
+            }
+          }
+          dhallsToCsv(language.path, dhalls);
         }
       }
-    } on FileSystemException {
-      print('Directory does not exist.');
+      break;
     }
-  } else {
-    print("Usage: mkcsv [Directory]");
   }
 }
