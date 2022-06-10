@@ -27,7 +27,7 @@ class Line {
 }
 
 class LineManager {
-  Map<String, Line> _lines = {};
+  final Map<String, Line> _lines = {};
 
   Future<void> load(String csvPath) async {
     for (var record in await csvRead(csvPath)) {

@@ -3,7 +3,7 @@ import 'package:dialogos/dialogos.dart';
 void main() async {
   print('');
   var lineManager = LineManager();
-  await lineManager.load('example/example.csv');
+  await lineManager.load('example/assets/lines/languages/en.csv');
 
   var dialogos = Dialogos(lineManager);
   print(dialogos.start('level1/hello'));
