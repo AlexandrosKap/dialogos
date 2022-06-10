@@ -1,7 +1,12 @@
 import 'package:dialogos/dialogos.dart';
 
 void main() async {
-  var dialogos = Dialogos('example/example.csv');
-  await dialogos.load();
-  print(dialogos.lines['level2/theory11']);
+  print('');
+  var lineManager = LineManager();
+  await lineManager.load('example/example.csv');
+
+  var dialogos = Dialogos(lineManager);
+  print(dialogos.start('level1/hello'));
+  print(dialogos.next());
+  print(dialogos.next());
 }

@@ -5,20 +5,20 @@ class Awesome {
 }
 
 class Line {
-  List<dynamic> data;
+  final List<dynamic> _data;
 
-  Line(this.data);
+  Line(this._data);
 
-  String get emotion => data[0];
-  String get event => data[1];
-  String get name => data[2];
-  int get number => data[3];
-  double get pauseEnd => data[4];
-  double get pauseStart => data[5];
-  String get scene => data[6];
-  String get set => data[7];
-  String get sound => data[8];
-  String get text => data[9];
+  String get emotion => _data[0];
+  String get event => _data[1];
+  String get name => _data[2];
+  int get number => _data[3];
+  double get pauseEnd => _data[4];
+  double get pauseStart => _data[5];
+  String get scene => _data[6];
+  String get set => _data[7];
+  String get sound => _data[8];
+  String get text => _data[9];
 
   @override
   String toString() {
@@ -26,19 +26,62 @@ class Line {
   }
 }
 
-class Dialogos {
-  String csvPath;
-  Map<String, Line> lines = {};
+class LineManager {
+  Map<String, Line> _lines = {};
 
-  Dialogos(this.csvPath);
-
-  Future<void> load() async {
+  Future<void> load(String csvPath) async {
     for (var record in await csvRead(csvPath)) {
-      lines[record[0]] = Line(record.sublist(1));
+      _lines[record[0]] = Line(csvParseRecord(record.sublist(1)));
     }
   }
 
-  void play() {
-    print('play');
+  List<Line> getSet(String setName) {
+    List<Line> result = [];
+    var index = 0;
+    var code = '$setName$index';
+    while (_lines[code] != null) {
+      result.add(_lines[code]!);
+      index++;
+      code = '$setName$index';
+    }
+    return result;
+  }
+}
+
+class Dialogos {
+  var _lineNumber = 0;
+  var _lineSetName = '';
+  List<Line> _lineSet = [];
+  final LineManager _lineManager;
+  
+  Dialogos(this._lineManager);
+
+  get line => _lineSet[_lineNumber];
+
+  void refresh() {
+    _lineSet = _lineManager.getSet(_lineSetName);
+  }
+
+  void goto(int number) {
+    _lineNumber = number;
+    if (_lineNumber <= 0) {
+      _lineNumber = 0;
+    } else if (_lineNumber >= _lineSet.length) {
+      _lineNumber = _lineSet.length - 1;
+    } else {
+      _lineNumber = number;
+    }
+  }
+
+  Line start(String lineSetName) {
+    _lineSetName = lineSetName;
+    _lineSet = _lineManager.getSet(_lineSetName);
+    goto(0);
+    return line;
+  }
+
+  Line next() {
+    goto(_lineNumber + 1);
+    return line;
   }
 }
