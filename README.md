@@ -4,8 +4,7 @@ An experimental dialogue system for Dart.
 
 ## Features
 
-* 😱 No dependencies.
-* 🥱 A simple CSV parser.
+* 😱 Print text.
 
 ## Getting started
 
