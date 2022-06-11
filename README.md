@@ -4,15 +4,17 @@ An experimental dialogue system for Dart.
 
 ## Features
 
-You can parse CSV files :)
+😱 No dependencies.
+🥱 A simple CSV parser.
 
 ## Getting started
 
-Just download it and then:
+Just download it and then run the example:
 
 ```sh
+git clone https://github.com/AlexandrosKap/dialogos.git
 cd dialogos
-dart run example/hello.dart
+dart run example/example.dart
 ```
 
 ## Usage

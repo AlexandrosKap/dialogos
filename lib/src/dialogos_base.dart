@@ -13,12 +13,10 @@ class Line {
   String get event => _data[1];
   String get name => _data[2];
   int get number => _data[3];
-  double get pauseEnd => _data[4];
-  double get pauseStart => _data[5];
-  String get scene => _data[6];
-  String get set => _data[7];
-  String get sound => _data[8];
-  String get text => _data[9];
+  double get pause => _data[4];
+  String get scene => _data[5];
+  String get sound => _data[6];
+  String get text => _data[7];
 
   @override
   String toString() {
