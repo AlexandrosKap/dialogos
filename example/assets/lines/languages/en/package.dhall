@@ -1,1 +1,1 @@
-../../DialogosPackage/package.dhall
+../../DialogosDhallPackage/package.dhall

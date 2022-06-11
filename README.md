@@ -28,3 +28,13 @@ const URAwesome = true;
 ## Additional information
 
 I'm very beautiful. Remember that.
+
+# TODO
+
+- [x] A dhall transpiler script
+- [ ] A dhall-to-csv download script
+- [x] Line manager
+- [x] Dialogue objects
+- [ ] Dialogue options
+- [ ] Dialogue variables
+- [ ] Comments

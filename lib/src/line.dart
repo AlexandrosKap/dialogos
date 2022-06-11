@@ -1,16 +1,23 @@
 class Line {
-  final List<dynamic> _data;
+  late final String emotion;
+  late final String event;
+  late final String name;
+  late final int number;
+  late final double pause;
+  late final String scene;
+  late final String sound;
+  late final String text;
 
-  Line(this._data);
-
-  String get emotion => _data[0];
-  String get event => _data[1];
-  String get name => _data[2];
-  int get number => _data[3];
-  double get pause => _data[4];
-  String get scene => _data[5];
-  String get sound => _data[6];
-  String get text => _data[7];
+  Line(List<dynamic> data) {
+    emotion = data[0];
+    event = data[1];
+    name = data[2];
+    number = data[3];
+    pause = data[4];
+    scene = data[5];
+    sound = data[6];
+    text = data[7];
+  }
 
   @override
   String toString() {

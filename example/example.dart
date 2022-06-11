@@ -1,12 +1,14 @@
 import 'package:dialogos/dialogos.dart';
 
 void main() async {
-  print('');
-  var lineManager = LineManager();
-  await lineManager.load('example/assets/lines/languages/en.csv');
+  const scenes = ['level1/hello', 'level1/alex', 'level2/theory'];
 
-  var dialogos = Dialogue(lineManager);
-  print(dialogos.start('level1/hello'));
-  print(dialogos.next());
-  print(dialogos.next());
+  final lineManager = LineManager();
+  await lineManager.load('example/assets/lines/languages/en.csv');
+  
+  final dialogue = Dialogue(lineManager);
+  print(dialogue.startRandom(scenes));
+  while (dialogue.hasNext()) {
+    print(dialogue.next());
+  }
 }
