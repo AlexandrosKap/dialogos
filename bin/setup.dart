@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-// ignore: depend_on_referenced_packages
 import 'package:archive/archive_io.dart' show extractFileToDisk;
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 /// Gets the url of the dhall-to-csv executable for the current OS.
@@ -46,9 +44,10 @@ Future<void> install(Directory dhallParent) async {
 
 /// Adds .dhall-to-csv.exe to the .gitignore file.
 void addToGitignore() async {
-  var canAdd = true;
+  var canAdd = false;
   for (var file in Directory.current.listSync()) {
     if (file.path.endsWith('gitignore')) {
+      canAdd = true;
       final lines = (file as File)
         .openRead()
         .transform(utf8.decoder)

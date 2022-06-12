@@ -8,7 +8,7 @@ An experimental dialogue system for Dart.
 
 ## Getting started
 
-Just download it and then run the example:
+Clone and run the example:
 
 ```sh
 git clone https://github.com/AlexandrosKap/dialogos.git
@@ -33,6 +33,7 @@ I'm very beautiful. Remember that.
 
 - [x] A dhall transpiler script
 - [x] A dhall-to-csv download script
+- [ ] A "Create lines directory" script
 - [x] Line manager
 - [x] Dialogue objects
 - [ ] Dialogue options

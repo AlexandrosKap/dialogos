@@ -55,7 +55,7 @@ void createCsv(Directory language) async {
 
     // Transpile the temporary Dhall file to a CSV and delete it.
     final process = await Process.start(
-      './.dhall-to-csv.exe',
+      '.$separator.dhall-to-csv.exe',
       ['--file', temp.path, '--output', '${language.path}.csv']
     );
     await stderr.addStream(process.stderr);
