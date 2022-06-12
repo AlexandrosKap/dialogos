@@ -1,12 +1,14 @@
 import 'dart:io';
+import 'setup.dart' as setup;
 
+// Need works but works.
 // TODO: Check if this works on Windows.
-// TODO: Add comments.
+// TODO: Clean it.
 
 /// Creates a CSV file from a list of dhall files.
 /// It does that by using a dhall-to-csv executable from PATH.
 void dhallsToCsv(String language, List<String> dhalls) async {
-  const String dhallToCsvExe = 'dhall-to-csv';
+  const String dhallToCsvExe = './dhall-to-csv';
   final String separator =
     (Platform.isLinux || Platform.isMacOS || Platform.isFuchsia)
     ? '/'
@@ -51,6 +53,8 @@ in
 /// Makes CSV files from directories with dhall files.
 /// It does that by using a dhall-to-csv executable from PATH.
 void main() async {
+  await setup.main();
+
   final languagesPath =
     (Platform.isLinux || Platform.isMacOS || Platform.isFuchsia)
     ? 'assets/lines/languages'
