@@ -46,7 +46,7 @@ void main(List<String> arguments) async {
         addPackage(en);
         addTemplate(en);
       } else {
-        print('A "lines" directory already exists in ${parent.path}.');
+        print('A "lines" directory already exists in "${parent.path}".');
       }
     } else {
       print('Argument "${parent.path}" is not a directory.');
