@@ -7,10 +7,11 @@ class LineManager {
   final Map<String, Line> _lines = {};
 
   Future<void> load(String path) async {
-    final csv = await File(path).openRead()
-      .transform(utf8.decoder)
-      .transform(CsvToListConverter())
-      .toList();
+    final csv = await File(path)
+        .openRead()
+        .transform(utf8.decoder)
+        .transform(CsvToListConverter())
+        .toList();
     var isFirst = true;
     for (var row in csv) {
       if (isFirst) {

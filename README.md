@@ -33,7 +33,7 @@ I'm very beautiful. Remember that.
 
 - [x] A dhall transpiler script
 - [x] A dhall-to-csv download script
-- [ ] A "Create lines directory" script
+- [x] A "Create lines directory" script
 - [x] Line manager
 - [x] Dialogue objects
 - [ ] Dialogue options

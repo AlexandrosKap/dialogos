@@ -9,7 +9,7 @@ class Dialogue {
   var _lineNumber = 0;
   var _lineScene = '';
   List<Line> _lines = [];
-  
+
   Dialogue(this._lineManager);
 
   Line get line => _lines[_lineNumber];

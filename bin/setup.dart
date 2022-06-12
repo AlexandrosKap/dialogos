@@ -6,9 +6,12 @@ import 'package:http/http.dart' as http;
 
 /// Gets the url of the dhall-to-csv executable for the current OS.
 Uri getUrl() {
-  const windows = 'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-windows.zip';
-  const linux = 'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-linux.tar.bz2';
-  const macos = 'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-macos.tar.bz2';
+  const windows =
+      'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-windows.zip';
+  const linux =
+      'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-linux.tar.bz2';
+  const macos =
+      'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-macos.tar.bz2';
 
   if (Platform.isLinux) {
     return Uri.parse(linux);
@@ -36,7 +39,8 @@ Future<void> install(Directory dhallParent) async {
     await exe.copy('${Directory.current.path}\\.dhall-to-csv.exe');
   } else {
     exe = File('${dhallParent.path}/bin/dhall-to-csv');
-    final output = await exe.copy('${Directory.current.path}/.dhall-to-csv.exe');
+    final output =
+        await exe.copy('${Directory.current.path}/.dhall-to-csv.exe');
     await Process.run('chmod', ['+x', output.path]);
   }
   exe.parent.delete(recursive: true);
@@ -49,9 +53,9 @@ void addToGitignore() async {
     if (file.path.endsWith('gitignore')) {
       canAdd = true;
       final lines = (file as File)
-        .openRead()
-        .transform(utf8.decoder)
-        .transform(LineSplitter());
+          .openRead()
+          .transform(utf8.decoder)
+          .transform(LineSplitter());
       await for (var line in lines) {
         if (line == '.dhall-to-csv.exe') {
           canAdd = false;
@@ -63,9 +67,8 @@ void addToGitignore() async {
   }
 
   if (canAdd) {
-    await File('.gitignore').writeAsString(
-      '.dhall-to-csv.exe', mode: FileMode.append
-    );
+    await File('.gitignore')
+        .writeAsString('.dhall-to-csv.exe', mode: FileMode.append);
   }
 }
 
