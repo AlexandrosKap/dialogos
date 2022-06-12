@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' show Random;
 
 import 'line.dart';
 import 'line_manager.dart';

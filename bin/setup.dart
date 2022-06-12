@@ -1,14 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
-
-// Need works but works.
-// TODO: Check if .gitignore has dhall line.
-// TODO: Clean it.
 
 // ignore: depend_on_referenced_packages
 import 'package:archive/archive_io.dart' show extractFileToDisk;
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
+/// Gets the url of the dhall-to-csv executable for the current OS.
 Uri getUrl() {
   const windows = 'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-windows.zip';
   const linux = 'https://github.com/dhall-lang/dhall-haskell/releases/download/1.41.1/dhall-csv-1.0.2-x86_64-linux.tar.bz2';
@@ -23,6 +21,7 @@ Uri getUrl() {
   }
 }
 
+/// Gets the temporary archive file.
 Future<File> getTemp() {
   if (Platform.isWindows) {
     return File('${Directory.current.path}_temp_.zip').create();
@@ -31,45 +30,59 @@ Future<File> getTemp() {
   }
 }
 
-Future<void> install(Directory parent) async {
+/// Installs the dhall-to-csv executable inside the project directory.
+Future<void> install(Directory dhallParent) async {
   final File exe;
   if (Platform.isWindows) {
-    await File('.gitignore').writeAsString(
-      'dhall-to-csv.exe', mode: FileMode.append
-    );
-    exe = File('${parent.path}\\bin\\dhall-to-csv.exe');
-    await exe.copy('${Directory.current.path}\\dhall-to-csv.exe');
+    exe = File('${dhallParent.path}\\bin\\dhall-to-csv.exe');
+    await exe.copy('${Directory.current.path}\\.dhall-to-csv.exe');
   } else {
-    await File('.gitignore').writeAsString(
-      'dhall-to-csv', mode: FileMode.append
-    );
-    exe = File('${parent.path}/bin/dhall-to-csv');
-    final output = await exe.copy('${Directory.current.path}/dhall-to-csv');
-    final process = await Process.start('chmod', ['+x', output.path]);
-    await stderr.addStream(process.stderr);
-    stderr.flush();
+    exe = File('${dhallParent.path}/bin/dhall-to-csv');
+    final output = await exe.copy('${Directory.current.path}/.dhall-to-csv.exe');
+    await Process.run('chmod', ['+x', output.path]);
   }
   exe.parent.delete(recursive: true);
 }
 
-bool hasExe() {
-  final directory = Directory.current.path;
+/// Adds .dhall-to-csv.exe to the .gitignore file.
+void addToGitignore() async {
+  var canAdd = true;
   for (var file in Directory.current.listSync()) {
-    if (Platform.isWindows) {
-      if (file.path.replaceFirst('$directory\\', '') == 'dhall-to-csv.exe') {
-        return true;
+    if (file.path.endsWith('gitignore')) {
+      final lines = (file as File)
+        .openRead()
+        .transform(utf8.decoder)
+        .transform(LineSplitter());
+      await for (var line in lines) {
+        if (line == '.dhall-to-csv.exe') {
+          canAdd = false;
+          break;
+        }
       }
-    } else {
-      if (file.path.replaceFirst('$directory/', '') == 'dhall-to-csv') {
-        return true;
-      }
+      break;
+    }
+  }
+
+  if (canAdd) {
+    await File('.gitignore').writeAsString(
+      '.dhall-to-csv.exe', mode: FileMode.append
+    );
+  }
+}
+
+/// Checks if .dhall-to-csv.exe exists.
+bool hasExe() {
+  for (var file in Directory.current.listSync()) {
+    if (file.path.endsWith('.dhall-to-csv.exe')) {
+      return true;
     }
   }
   return false;
 }
 
-/// Downloads dhall-to-csv that mkcsv depends on.
+/// Downloads dhall-to-csv that dialogos depends on.
 Future<void> main() async {
+  addToGitignore();
   if (!hasExe()) {
     print('Downloading dhall-to-csv.');
     final temp = await getTemp();
