@@ -38,4 +38,4 @@ I'm very beautiful. Remember that.
 - [x] Dialogue objects
 - [ ] Dialogue options
 - [ ] Dialogue variables
-- [ ] Comments
+- [x] Comments

@@ -1,3 +1,4 @@
+/// A dialogue line representation.
 class Line {
   late final String emotion;
   late final String event;

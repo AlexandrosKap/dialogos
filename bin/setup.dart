@@ -1,5 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
+import 'dart:convert' show LineSplitter, utf8;
+import 'dart:io' show File, FileMode, Directory, Platform, Process;
 
 import 'package:archive/archive_io.dart' show extractFileToDisk;
 import 'package:http/http.dart' as http;
@@ -31,7 +31,8 @@ Future<File> getTemp() {
   }
 }
 
-/// Installs the dhall-to-csv executable inside the project directory.
+/// Installs the dhall-to-csv executable inside the current directory.
+/// The executable is saved as ".dhall-to-csv.exe".
 Future<void> install(Directory dhallParent) async {
   final File exe;
   if (Platform.isWindows) {

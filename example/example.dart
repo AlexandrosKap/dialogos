@@ -4,8 +4,8 @@ void main() async {
   const scenes = ['level1/hello', 'level1/alex', 'level2/theory'];
 
   final lineManager = LineManager();
-  await lineManager.load('example/assets/lines/languages/en.csv');
-  
+  await lineManager.load('example/assets/lines/en.csv');
+
   final dialogue = Dialogue(lineManager);
   print(dialogue.startRandom(scenes));
   while (dialogue.hasNext()) {

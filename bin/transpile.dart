@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show File, Directory, Platform, Process, stderr;
 
 import 'setup.dart' as setup;
 
@@ -61,13 +61,14 @@ void main(List<String> arguments) async {
     final assets = Directory(arguments[0]);
     final lines = getLines(assets);
     if (lines.existsSync()) {
-      final languages = lines.listSync();
-      for (var language in languages) {
+      var hasNoLanguage = true;
+      for (var language in lines.listSync()) {
         if (language is Directory) {
+          hasNoLanguage = false;
           createCsv(language);
         }
       }
-      if (languages.isEmpty) {
+      if (hasNoLanguage) {
         print('Add language directories inside "${lines.path}".');
       }
     } else {
