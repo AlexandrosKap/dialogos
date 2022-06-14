@@ -1,6 +1,5 @@
 import 'dart:io' show File, Directory, Platform;
-
-final separator = (Platform.isWindows) ? '\\' : '/';
+import 'separator.dart' show separator;
 
 /// Creates a directory inside a directory.
 Future<Directory> createDirectory(String name, Directory parent) {

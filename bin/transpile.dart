@@ -1,8 +1,6 @@
 import 'dart:io' show File, Directory, Platform, Process, stderr;
-
+import 'separator.dart' show separator;
 import 'setup.dart' as setup;
-
-final separator = (Platform.isWindows) ? '\\' : '/';
 
 /// Gets the lines directory inside assets.
 Directory getLines(Directory assets) {
@@ -38,9 +36,9 @@ void createCsv(Directory language) async {
           .substring(0, dhall.path.lastIndexOf('.dhall'))
           .replaceFirst('${language.path}$separator', '')
           .replaceAll(separator, '/');
-      sink.write('(addSceneToList "$scene" (.$separator$scene.dhall))#\n');
+      sink.writeln('(addSceneToList "$scene" (.$separator$scene.dhall))#');
     }
-    sink.write('([] : List Line)\n');
+    sink.writeln('([] : List Line)');
     await sink.close();
 
     // Transpile the temporary Dhall file to a CSV and delete it.
