@@ -1,9 +1,9 @@
 let package = ../package.dhall
-let names = ../names.dhall
+let print = package.print
 
-let none = package.print names.none
-let alex = package.print names.alex
-let john = package.print names.john
+let none = print ""
+let alex = print "Alex"
+let john = print "John"
 
 in  [ alex "My name is..."
     , alex "Alex."

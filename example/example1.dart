@@ -1,7 +1,7 @@
 import 'package:dialogos/dialogos.dart';
 
 void main() async {
-  const scenes = ['level1/hello', 'level1/alex', 'level2/theory'];
+  const scenes = ['level1/hello', 'level1/alex'];
 
   final lineManager = LineManager();
   await lineManager.load('example/assets/lines/en.csv');

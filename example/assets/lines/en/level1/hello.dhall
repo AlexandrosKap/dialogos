@@ -1,12 +1,9 @@
 let package = ../package.dhall
-let names = ../names.dhall
 
-let none = package.print names.none
-let alex = package.print names.alex
+let ali = package.print "Ali"
 
-in  [ alex "Hello world."
-    , alex "This is a big Big BIG line and has many Many MANY characters."
-    , alex "I love you."
-    , alex "Bye."
-    , none "The end."
+in  [ ali "Hello hello!"
+    , ali "I'm Ali."
+    , ali "Thank you for using Dialogos."
+    , ali "UwU"
     ]

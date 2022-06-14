@@ -23,14 +23,12 @@ void addTemplate(Directory parent) async {
   file.writeAsStringSync('''
 let package = ../package.dhall
 
-let alex = package.print "Alex"
-let dioni = package.print "Dioni"
+let ali = package.print "Ali"
 
-in  [ alex "Hello hello!"
-    , alex "I'm Alex."
-    , dioni "And I am Dioni."
-    , alex "Thank you for using Dialogos."
-    , alex "UwU"
+in  [ ali "Hello hello!"
+    , ali "I'm Ali."
+    , ali "Thank you for using Dialogos."
+    , ali "UwU"
     ]
 ''');
 }
