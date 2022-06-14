@@ -14,7 +14,7 @@ An experimental dialogue system for Dart.
 
 ## Getting started
 
-Add Dialogs as a dependency to your pubspec.yaml file ([what?](https://flutter.io/using-packages/)).
+Add Dialogos as a dependency to your pubspec.yaml file ([what?](https://flutter.io/using-packages/)).
 
 You can also clone the repo and run the examples:
 
@@ -56,7 +56,7 @@ dart run dialogos transpile .
 ```
 
 The "split" command will create
-small csv files from a big CSV file.
+small CSV files from a big CSV file.
 What is does, in essense, is to split a CSV file in small parts.
 
 Example:
