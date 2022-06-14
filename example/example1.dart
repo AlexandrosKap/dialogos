@@ -8,7 +8,7 @@ void main() async {
 
   final dialogue = Dialogue(lineManager);
   print(dialogue.startRandom(scenes));
-  while (dialogue.hasNext()) {
+  while (dialogue.hasNext) {
     print(dialogue.next());
   }
 }

@@ -8,7 +8,7 @@ An experimental dialogue system for Dart.
 * 😁 Language files
 * 🤔 Lines are referenced by a line code
 * 😎 Lines are grouped by scene
-* 😮 Event lines that can be customized
+* 😮 Event lines
 * 🥺 Variables
 * 😉 Dhall as a scripting language
 
@@ -31,8 +31,8 @@ Dialogos includes a helpful script called "dialogos.dart".
 This script has three commands:
 
 * create
-* split
 * transpile
+* split
 
 The "create" command will create
 a new "lines" directory.
@@ -55,15 +55,12 @@ Example:
 dart run dialogos transpile .
 ```
 
+SPLIT NOT DONE!
+
+```
 The "split" command will create
 small CSV files from a big CSV file.
 What is does, in essense, is to split a CSV file in small parts.
-
-Example:
-
-```sh
-# Make sure that "lines/en.csv" exists.
-dart run dialogos split lines/en.csv 2
 ```
 
 ## Additional information

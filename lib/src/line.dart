@@ -1,5 +1,9 @@
 /// A dialogue line representation.
 class Line {
+  static const positionEvent = 'position';
+  static const gotoEvent = 'goto';
+  static const menuEvent = 'menu';
+
   late final String emotion;
   late final String event;
   late final String name;
@@ -19,6 +23,14 @@ class Line {
     sound = data[6];
     text = data[7];
   }
+
+  bool get isEvent => event.isNotEmpty;
+  bool get isPositionEvent => event == positionEvent;
+  bool get isGotoEvent => event == gotoEvent;
+  bool get isMenuEvent => event == menuEvent;
+
+  List<String> get firstArguments => name.split('||');
+  List<String> get secondArguments => text.split('||');
 
   @override
   String toString() {
