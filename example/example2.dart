@@ -1,24 +1,45 @@
+import 'dart:io' show stdin;
+
 import 'package:dialogos/dialogos.dart';
 
-// Testing the menu event.
+String showMenu(Line event) {
+  final positions = event.menuEventPositions;
+  final options = event.menuEventOptions;
+
+  // Print options.
+  print('');
+  var index = 0;
+  for (var option in options) {
+    print('$index => $option');
+    index++;
+  }
+
+  // Returns a position from the options.
+  print('Enter a option:');
+  while(true) {
+    final number = int.tryParse(stdin.readLineSync() ?? '');
+    if (number != null && number >= 0 && number < options.length) {
+      print('');
+      return positions[number];
+    }
+  }
+}
 
 void main() async {
-  const scenes = ['level2/options'];
+  const scene = 'level2/options';
 
   final lineManager = LineManager();
   await lineManager.load('example/assets/lines/en.csv');
   final dialogue = Dialogue(lineManager);
 
-  print(dialogue.startRandom(scenes));
+  dialogue.start(scene);
   while (dialogue.hasNext) {
-    final line = dialogue.next();
-
+    final line = dialogue.line;
     if (line.isMenuEvent) {
-      print('\n${line.menuEventPositions}');
-      print('${line.menuEventOptions}\n');
-      print(dialogue.gotoPosition(line.menuEventPositions[0]));
+      print(dialogue.gotoPosition(showMenu(line)));
     } else {
       print(line);
     }
+    dialogue.next();
   }
 }
