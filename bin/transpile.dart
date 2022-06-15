@@ -1,10 +1,14 @@
 import 'dart:io' show File, Directory, Platform, Process, stderr;
-import 'separator.dart' show separator;
+
+import 'package:path/path.dart' as p;
+
 import 'setup.dart' as setup;
+
+const exeName = '.dhall-to-csv.exe';
 
 /// Gets the lines directory inside assets.
 Directory getLines(Directory assets) {
-  return Directory('${assets.path}${separator}lines');
+  return Directory(p.join(assets.path, 'lines'));
 }
 
 /// Creates a CSV file for a language directory.
@@ -23,7 +27,8 @@ void createCsv(Directory language) async {
 
   if (dhalls.isNotEmpty) {
     // Create a temporary Dhall file containing all Dhall files.
-    final temp = await File('${language.path}$separator.temp.dhall').create();
+    final separator = Platform.isWindows ? '\\' : '/';
+    final temp = await File(p.join(language.path, '.temp.dhall')).create();
     final sink = temp.openWrite();
     sink.write('''
       let package = ./package.dhall
@@ -42,7 +47,7 @@ void createCsv(Directory language) async {
     await sink.close();
 
     // Transpile the temporary Dhall file to a CSV and delete it.
-    final process = await Process.start('.$separator.dhall-to-csv.exe',
+    final process = await Process.start(p.join('.', exeName),
         ['--file', temp.path, '--output', '${language.path}.csv']);
     await stderr.addStream(process.stderr);
     await stderr.flush();
@@ -59,14 +64,14 @@ void main(List<String> arguments) async {
     final assets = Directory(arguments[0]);
     final lines = getLines(assets);
     if (lines.existsSync()) {
-      var hasNoLanguage = true;
+      var hasLanguage = false;
       for (var language in lines.listSync()) {
         if (language is Directory) {
-          hasNoLanguage = false;
+          hasLanguage = true;
           createCsv(language);
         }
       }
-      if (hasNoLanguage) {
+      if (!hasLanguage) {
         print('Add language directories inside "${lines.path}".');
       }
     } else {

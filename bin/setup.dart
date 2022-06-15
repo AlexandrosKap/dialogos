@@ -1,7 +1,11 @@
 import 'dart:convert' show LineSplitter, utf8;
 import 'dart:io' show File, FileMode, Directory, Platform, Process;
+
 import 'package:archive/archive_io.dart' show extractFileToDisk;
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as p;
+
+const outputExeName = '.dhall-to-csv.exe';
 
 /// Gets the url of the dhall-to-csv executable for the current OS.
 Uri getUrl() {
@@ -33,31 +37,36 @@ Future<File> getTemp() {
 /// Installs the dhall-to-csv executable inside the current directory.
 /// The executable is saved as ".dhall-to-csv.exe".
 Future<void> install(Directory dhallParent) async {
+  final binPath = p.join(dhallParent.path, 'bin');
+  final outputPath = p.join(Directory.current.path, outputExeName);
+
   final File exe;
   if (Platform.isWindows) {
-    exe = File('${dhallParent.path}\\bin\\dhall-to-csv.exe');
-    await exe.copy('${Directory.current.path}\\.dhall-to-csv.exe');
+    exe = File(p.join(binPath, 'dhall-to-csv.exe'));
+    await exe.copy(outputPath);
   } else {
-    exe = File('${dhallParent.path}/bin/dhall-to-csv');
-    final output =
-        await exe.copy('${Directory.current.path}/.dhall-to-csv.exe');
-    await Process.run('chmod', ['+x', output.path]);
+    exe = File(p.join(binPath, 'dhall-to-csv'));
+    await exe.copy(outputPath);
+    await Process.run('chmod', ['+x', outputPath]);
   }
   exe.parent.delete(recursive: true);
 }
 
-/// Adds .dhall-to-csv.exe to the .gitignore file.
+/// Adds the exe path to the gitignore file.
 void addToGitignore() async {
+  const gitignoreName = '.gitignore';
   var canAdd = false;
+
   for (var file in Directory.current.listSync()) {
-    if (file.path.endsWith('gitignore')) {
+    if (file.path.endsWith(gitignoreName)) {
       canAdd = true;
+      // Check if gitignore has the exe path.
       final lines = (file as File)
           .openRead()
           .transform(utf8.decoder)
           .transform(LineSplitter());
       await for (var line in lines) {
-        if (line == '.dhall-to-csv.exe') {
+        if (line == outputExeName) {
           canAdd = false;
           break;
         }
@@ -67,15 +76,15 @@ void addToGitignore() async {
   }
 
   if (canAdd) {
-    await File('.gitignore')
-        .writeAsString('.dhall-to-csv.exe', mode: FileMode.append);
+    await File(gitignoreName)
+        .writeAsString(outputExeName, mode: FileMode.append);
   }
 }
 
 /// Checks if .dhall-to-csv.exe exists.
 bool hasExe() {
   for (var file in Directory.current.listSync()) {
-    if (file.path.endsWith('.dhall-to-csv.exe')) {
+    if (file.path.endsWith(outputExeName)) {
       return true;
     }
   }

@@ -7,11 +7,11 @@ import 'line_manager.dart';
 class Dialogue {
   final _random = Random();
   final LineManager _lineManager;
+  final Map<String, int> _positions = {};
 
   var _lineNumber = 0;
   var _lineScene = '';
   List<Line> _lines = [];
-  Map<String, int> _positions = {};
 
   Dialogue(this._lineManager);
 
@@ -21,11 +21,16 @@ class Dialogue {
   /// Checks if the current scene has one more line.
   bool get hasNext => _lineNumber + 1 < _lines.length;
 
-  void _gotoEventProcess() {
-    _lineNumber = _positions[line.text] ?? _lineNumber;
+  /// Called when the goto functions find a position event.
+  void _onPositionEvent() {
     if (hasNext) {
-      _lineNumber++;
+      next();
     }
+  }
+
+  /// Called when the goto functions find a goto event.
+  void _onGotoEvent() {
+    gotoPosition(line.positionEventName);
   }
 
   /// Updates the list of dialogue lines.
@@ -35,43 +40,48 @@ class Dialogue {
   }
 
   /// Goes to a specific line.
-  Line goto(int number) {
+  Line gotoLine(int number) {
     if (number >= 0 && number < _lines.length) {
       _lineNumber = number;
-      switch (line.event) {
-        case Line.gotoEvent:
-          _gotoEventProcess();
-          break;
-        case Line.menuEvent:
-          break;
+      if (line.isPositionEvent) {
+        _onPositionEvent();
+      } else if (line.isGotoEvent) {
+        _onGotoEvent();
       }
       return line;
     } else {
-      throw Exception('Number is outside range [0, ${_lines.length - 1}].');
+      throw Exception('Line number "$number" is too big or too small.');
     }
   }
 
-  /// Menu function... Testing ...
-  void select(int option) {
-    goto(_positions[line.firstArguments[option]] ?? _lineNumber);
+  /// Goes to a specific position.
+  Line gotoPosition(String position) {
+    final number = _positions[position];
+    if (number != null) {
+      return gotoLine(number);
+    } else {
+      throw Exception('Position "$position" does not exist.');
+    }
   }
 
-  /// Starts a new scene.
-  Line start(String scene) {
-    _lineScene = scene;
-    refresh();
+  /// Goes to the first line of the current scene.
+  /// Enter a scene to start a new scene.
+  Line start(String? scene) {
+    if (scene != null) {
+      _lineScene = scene;
+      refresh();
 
-    // Creates new positions.
-    _positions.clear();
-    var index = 0;
-    for (var line in _lines) {
-      if (line.isPositionEvent) {
-        _positions[line.text] = index;
+      // Creates new positions.
+      _positions.clear();
+      var index = 0;
+      for (var line in _lines) {
+        if (line.isPositionEvent) {
+          _positions[line.positionEventName] = index;
+        }
+        index++;
       }
-      index++;
     }
-
-    return goto(0);
+    return gotoLine(0);
   }
 
   /// Starts a new random scene.
@@ -81,11 +91,11 @@ class Dialogue {
 
   /// Goes to the next line of the current scene.
   Line next() {
-    return goto(_lineNumber + 1);
+    return gotoLine(_lineNumber + 1);
   }
 
   /// Goes to the last line of the current scene.
   Line end() {
-    return goto(_lines.length - 1);
+    return gotoLine(_lines.length - 1);
   }
 }

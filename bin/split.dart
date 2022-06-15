@@ -1,6 +1,7 @@
 import 'dart:convert' show LineSplitter, utf8;
 import 'dart:io' show File;
-import 'separator.dart' show separator;
+
+import 'package:path/path.dart' as p;
 
 // TODO: Works but I don't like how it works. Change it.
 // TODO: Split by looking at scenes.
@@ -14,14 +15,14 @@ Future<int> getLineCount(File file) async {
 
 /// Creates part files for a big file.
 void createFilesFromFile(File file, int partCount) async {
-  final fileName = file.path.replaceFirst(file.parent.path, '');
+  final fileName = p.basenameWithoutExtension(file.path);
+  final partName = p.join(file.parent.path, fileName, '_part');
   final lines =
       file.openRead().transform(utf8.decoder).transform(LineSplitter());
-  final partName =
-      '${file.parent.path}$separator${fileName}_part'.replaceFirst('.csv', '');
 
   // Creates part files.
   print('NOT DONE!');
+  print(partName);
 }
 
 /// Splits a CSV file.

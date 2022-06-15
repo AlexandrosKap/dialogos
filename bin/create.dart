@@ -1,24 +1,24 @@
-import 'dart:io' show File, Directory, Platform;
-import 'separator.dart' show separator;
+import 'dart:io' show File, Directory;
+
+import 'package:path/path.dart' as p;
 
 /// Creates a directory inside a directory.
 Future<Directory> createDirectory(String name, Directory parent) {
-  return Directory('${parent.path}$separator$name').create();
+  return Directory(p.join(parent.path, name)).create();
 }
 
 /// Adds a package.dhall file to a directory.
 void addPackage(Directory parent) async {
   const url =
       'https://raw.githubusercontent.com/AlexandrosKap/DialogosDhallPackage/main/package.dhall\n';
-  final package =
-      await File('${parent.path}${separator}package.dhall').create();
+  final package = await File(p.join(parent.path, 'package.dhall')).create();
   package.writeAsString(url);
 }
 
 /// Adds a template scene directory to a directory.
 void addTemplate(Directory parent) async {
   final tempalte = await createDirectory('main', parent);
-  final file = await File('${tempalte.path}${separator}hello.dhall').create();
+  final file = await File(p.join(tempalte.path, 'hello.dhall')).create();
   file.writeAsStringSync('''
 let package = ../package.dhall
 
@@ -37,7 +37,7 @@ void main(List<String> arguments) async {
   if (arguments.length == 1) {
     final parent = Directory(arguments[0]);
     if (parent.existsSync()) {
-      if (!Directory('${parent.path}${separator}lines').existsSync()) {
+      if (!Directory(p.join(parent.path, 'lines')).existsSync()) {
         final lines = await createDirectory('lines', parent);
         final en = await createDirectory('en', lines);
         addPackage(en);

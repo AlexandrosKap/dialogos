@@ -29,8 +29,16 @@ class Line {
   bool get isGotoEvent => event == gotoEvent;
   bool get isMenuEvent => event == menuEvent;
 
+  String get firstArgument => name;
   List<String> get firstArguments => name.split('||');
+  String get secondArgument => text;
   List<String> get secondArguments => text.split('||');
+
+  // Event argument getters.
+  String get positionEventName => secondArgument;
+  String get gotoEventPosition => secondArgument;
+  List<String> get menuEventPositions => firstArguments;
+  List<String> get menuEventOptions => secondArguments;
 
   @override
   String toString() {
