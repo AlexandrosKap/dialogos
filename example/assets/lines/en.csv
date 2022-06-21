@@ -11,6 +11,93 @@ level1/hello0,,,Ali,0,0.0,level1/hello,,Hello hello!
 level1/hello1,,,Ali,1,0.0,level1/hello,,I'm Ali.
 level1/hello2,,,Ali,2,0.0,level1/hello,,Thank you for using Dialogos.
 level1/hello3,,,Ali,3,0.0,level1/hello,,UwU
+level2/questionGame0,,position,,0,0.0,level2/questionGame,,start
+level2/questionGame1,,,,1,0.0,level2/questionGame,,"It's only when I hear the sounds of shuffling feet
+and supplies being put away that I realize that the lecture's over."
+level2/questionGame2,,,,2,0.0,level2/questionGame,,"Professor Eileen's lectures are usually interesting,
+but today I just couldn't concentrate on it."
+level2/questionGame3,,,,3,0.0,level2/questionGame,,"I've had a lot of other thoughts
+on my mind...thoughts that culminate in a question."
+level2/questionGame4,,,,4,0.0,level2/questionGame,,It's a question that I've been meaning to ask a certain someone.
+level2/questionGame5,,,,5,0.0,level2/questionGame,,"I've known Sylvie since we were kids.
+She's got a big heart and she's always been a good friend to me."
+level2/questionGame6,,,,6,0.0,level2/questionGame,,But recently... I've felt that I want something more.
+level2/questionGame7,,,,7,0.0,level2/questionGame,,"More than just talking,
+more than just walking home together when our classes end."
+level2/questionGame8,,,,8,0.0,level2/questionGame,,"As soon as she catches my eye, I decide..."
+level2/questionGame9,,menu,rightaway||later,9,0.0,level2/questionGame,,To ask her right away.||To ask her later.
+level2/questionGame10,,position,,10,0.0,level2/questionGame,,rightaway
+level2/questionGame11,,,Sylvie,11,0.0,level2/questionGame,,Hi there! How was class?
+level2/questionGame12,,,Me,12,0.0,level2/questionGame,,Good...
+level2/questionGame13,,,,13,0.0,level2/questionGame,,I can't bring myself to admit that it all went in one ear and out the other.
+level2/questionGame14,,,Me,14,0.0,level2/questionGame,,Are you going home now? Wanna walk back with me?
+level2/questionGame15,,,Sylvie,15,0.0,level2/questionGame,,Sure!
+level2/questionGame16,,,,16,0.0,level2/questionGame,,"After a short while, we reach the meadows just outside the neighborhood where we both live."
+level2/questionGame17,,,,17,0.0,level2/questionGame,,It's a scenic view I've grown used to. Autumn is especially beautiful here.
+level2/questionGame18,,,,18,0.0,level2/questionGame,,"When we were children, we played in these meadows a lot, so they're full of memories."
+level2/questionGame19,,,Me,19,0.0,level2/questionGame,,Hey... Umm...
+level2/questionGame20,,,,20,0.0,level2/questionGame,,She turns to me and smiles. She looks so welcoming that I feel my nervousness melt away.
+level2/questionGame21,,,,21,0.0,level2/questionGame,,I'll ask her...!
+level2/questionGame22,,,Me,22,0.0,level2/questionGame,,Ummm... Will you...
+level2/questionGame23,,,Me,23,0.0,level2/questionGame,,Will you be my artist for a visual novel?
+level2/questionGame24,,,,24,0.0,level2/questionGame,,Silence.
+level2/questionGame25,,,,25,0.0,level2/questionGame,,She looks so shocked that I begin to fear the worst. But then...
+level2/questionGame26,,,Sylvie,26,0.0,level2/questionGame,,"Sure, but what's a ""visual novel?"""
+level2/questionGame27,,menu,game||book,27,0.0,level2/questionGame,,It's a videogame.||It's an interactive book.
+level2/questionGame28,,position,,28,0.0,level2/questionGame,,game
+level2/questionGame29,,,Me,29,0.0,level2/questionGame,,It's a kind of videogame you can play on your computer or a console.
+level2/questionGame30,,,Me,30,0.0,level2/questionGame,,Visual novels tell a story with pictures and music.
+level2/questionGame31,,,Me,31,0.0,level2/questionGame,,"Sometimes, you also get to make choices that affect the outcome of the story."
+level2/questionGame32,,,Sylvie,32,0.0,level2/questionGame,,So it's like those choose-your-adventure books?
+level2/questionGame33,,,Me,33,0.0,level2/questionGame,,Exactly! I've got lots of different ideas that I think would work.
+level2/questionGame34,,,Me,34,0.0,level2/questionGame,,And I thought maybe you could help me...since I know how you like to draw.
+level2/questionGame35,,,Me,35,0.0,level2/questionGame,,It'd be hard for me to make a visual novel alone.
+level2/questionGame36,,,Sylvie,36,0.0,level2/questionGame,,"Well, sure! I can try. I just hope I don't disappoint you."
+level2/questionGame37,,,Me,37,0.0,level2/questionGame,,"You know you could never disappoint me, Sylvie."
+level2/questionGame38,,goto,,38,0.0,level2/questionGame,,marry
+level2/questionGame39,,position,,39,0.0,level2/questionGame,,book
+level2/questionGame40,,,Me,40,0.0,level2/questionGame,,It's like an interactive book that you can read on a computer or a console.
+level2/questionGame41,,,Sylvie,41,0.0,level2/questionGame,,Interactive?
+level2/questionGame42,,,Me,42,0.0,level2/questionGame,,You can make choices that lead to different events and endings in the story.
+level2/questionGame43,,,Sylvie,43,0.0,level2/questionGame,,"So where does the ""visual"" part come in?"
+level2/questionGame44,,,Me,44,0.0,level2/questionGame,,"Visual novels have pictures and even music, sound effects, and sometimes voice acting to go along with the text."
+level2/questionGame45,,,Sylvie,45,0.0,level2/questionGame,,"I see! That certainly sounds like fun. I actually used to make webcomics way back when, so I've got lots of story ideas."
+level2/questionGame46,,,Me,46,0.0,level2/questionGame,,That's great! So...would you be interested in working with me as an artist?
+level2/questionGame47,,,Sylvie,47,0.0,level2/questionGame,,I'd love to!
+level2/questionGame48,,goto,,48,0.0,level2/questionGame,,marry
+level2/questionGame49,,position,,49,0.0,level2/questionGame,,marry
+level2/questionGame50,,,,50,0.0,level2/questionGame,,"And so, we become a visual novel creating duo."
+level2/questionGame51,,,,51,0.0,level2/questionGame,,"Over the years, we make lots of games and have a lot of fun making them."
+level2/questionGame52,,,,52,0.0,level2/questionGame,,We take turns coming up with stories and characters and support each other to make some great games!
+level2/questionGame53,,,,53,0.0,level2/questionGame,,And one day...
+level2/questionGame54,,,Sylvie,54,0.0,level2/questionGame,,Hey...
+level2/questionGame55,,,Me,55,0.0,level2/questionGame,,Yes?
+level2/questionGame56,,,Sylvie,56,0.0,level2/questionGame,,Will you marry me?
+level2/questionGame57,,,Me,57,0.0,level2/questionGame,,What? Where did this come from?
+level2/questionGame58,,,Sylvie,58,0.0,level2/questionGame,,"Come on, how long have we been dating?"
+level2/questionGame59,,,Me,59,0.0,level2/questionGame,,A while...
+level2/questionGame60,,,Sylvie,60,0.0,level2/questionGame,,"These last few years we've been making visual novels together, spending time together, helping each other..."
+level2/questionGame61,,,Sylvie,61,0.0,level2/questionGame,,"I've gotten to know you and care about you better than anyone else. And I think the same goes for you, right?"
+level2/questionGame62,,,Me,62,0.0,level2/questionGame,,Sylvie...
+level2/questionGame63,,,Sylvie,63,0.0,level2/questionGame,,"But I know you're the indecisive type. If I held back, who knows when you'd propose?"
+level2/questionGame64,,,Sylvie,64,0.0,level2/questionGame,,So will you marry me?
+level2/questionGame65,,,Me,65,0.0,level2/questionGame,,"Of course I will! I've actually been meaning to propose, honest!"
+level2/questionGame66,,,Sylvie,66,0.0,level2/questionGame,,"I know, I know."
+level2/questionGame67,,,Me,67,0.0,level2/questionGame,,I guess... I was too worried about timing. I wanted to ask the right question at the right time.
+level2/questionGame68,,,Sylvie,68,0.0,level2/questionGame,,You worry too much. If only this were a visual novel and I could pick an option to give you more courage!
+level2/questionGame69,,,,69,0.0,level2/questionGame,,We get married shortly after that.
+level2/questionGame70,,,,70,0.0,level2/questionGame,,Our visual novel duo lives on even after we're married...and I try my best to be more decisive.
+level2/questionGame71,,,,71,0.0,level2/questionGame,,"Together, we live happily ever after even now."
+level2/questionGame72,,,,72,0.0,level2/questionGame,,Good Ending.
+level2/questionGame73,,goto,,73,0.0,level2/questionGame,,end
+level2/questionGame74,,position,,74,0.0,level2/questionGame,,later
+level2/questionGame75,,,,75,0.0,level2/questionGame,,"I can't get up the nerve to ask right now. With a gulp, I decide to ask her later."
+level2/questionGame76,,,,76,0.0,level2/questionGame,,But I'm an indecisive person.
+level2/questionGame77,,,,77,0.0,level2/questionGame,,I couldn't ask her that day and I end up never being able to ask her.
+level2/questionGame78,,,,78,0.0,level2/questionGame,,I guess I'll never know the answer to my question now...
+level2/questionGame79,,,,79,0.0,level2/questionGame,,Bad Ending.
+level2/questionGame80,,goto,,80,0.0,level2/questionGame,,end
+level2/questionGame81,,position,,81,0.0,level2/questionGame,,end
 level2/options0,,,Bob,0,0.0,level2/options,,Hi.
 level2/options1,,,Bob,1,0.0,level2/options,,Do you like apples?
 level2/options2,,menu,yes||no,2,0.0,level2/options,,"Yes! Apples are great.||No, I only like oranges."
