@@ -3,8 +3,8 @@ import 'dart:io' show stdin;
 import 'package:dialogos/dialogos.dart';
 
 String showMenu(Line event) {
-  final positions = event.menuEventPositions;
-  final options = event.menuEventOptions;
+  final positions = event.firstArguments;
+  final options = event.secondArguments;
 
   // Print options.
   print('');

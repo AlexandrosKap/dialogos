@@ -30,7 +30,7 @@ class Dialogue {
 
   /// Called when the goto functions find a goto event.
   void _onGotoEvent() {
-    gotoPosition(line.positionEventName);
+    gotoPosition(line.secondArgument);
   }
 
   /// Updates the list of dialogue lines.
@@ -76,7 +76,7 @@ class Dialogue {
       var index = 0;
       for (var line in _lines) {
         if (line.isPositionEvent) {
-          _positions[line.positionEventName] = index;
+          _positions[line.secondArgument] = index;
         }
         index++;
       }
