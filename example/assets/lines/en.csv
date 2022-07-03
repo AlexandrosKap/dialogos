@@ -12,18 +12,13 @@ level1/hello1,,,Ali,1,0.0,level1/hello,,I'm Ali.
 level1/hello2,,,Ali,2,0.0,level1/hello,,Thank you for using Dialogos.
 level1/hello3,,,Ali,3,0.0,level1/hello,,UwU
 level2/questionGame0,,position,,0,0.0,level2/questionGame,,start
-level2/questionGame1,,,,1,0.0,level2/questionGame,,"It's only when I hear the sounds of shuffling feet
-and supplies being put away that I realize that the lecture's over."
-level2/questionGame2,,,,2,0.0,level2/questionGame,,"Professor Eileen's lectures are usually interesting,
-but today I just couldn't concentrate on it."
-level2/questionGame3,,,,3,0.0,level2/questionGame,,"I've had a lot of other thoughts
-on my mind...thoughts that culminate in a question."
+level2/questionGame1,,,,1,0.0,level2/questionGame,,It's only when I hear the sounds of shuffling feet and supplies being put away that I realize that the lecture's over.
+level2/questionGame2,,,,2,0.0,level2/questionGame,,"Professor Eileen's lectures are usually interesting, but today I just couldn't concentrate on it."
+level2/questionGame3,,,,3,0.0,level2/questionGame,,I've had a lot of other thoughts on my mind...thoughts that culminate in a question.
 level2/questionGame4,,,,4,0.0,level2/questionGame,,It's a question that I've been meaning to ask a certain someone.
-level2/questionGame5,,,,5,0.0,level2/questionGame,,"I've known Sylvie since we were kids.
-She's got a big heart and she's always been a good friend to me."
+level2/questionGame5,,,,5,0.0,level2/questionGame,,I've known Sylvie since we were kids. She's got a big heart and she's always been a good friend to me.
 level2/questionGame6,,,,6,0.0,level2/questionGame,,But recently... I've felt that I want something more.
-level2/questionGame7,,,,7,0.0,level2/questionGame,,"More than just talking,
-more than just walking home together when our classes end."
+level2/questionGame7,,,,7,0.0,level2/questionGame,,"More than just talking, more than just walking home together when our classes end."
 level2/questionGame8,,,,8,0.0,level2/questionGame,,"As soon as she catches my eye, I decide..."
 level2/questionGame9,,menu,rightaway||later,9,0.0,level2/questionGame,,To ask her right away.||To ask her later.
 level2/questionGame10,,position,,10,0.0,level2/questionGame,,rightaway

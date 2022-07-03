@@ -7,7 +7,6 @@ String showMenu(Line event) {
   final options = event.menuEventOptions;
 
   // Print options.
-  print('');
   var index = 0;
   for (var option in options) {
     print('$index => $option');
