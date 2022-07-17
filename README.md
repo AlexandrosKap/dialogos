@@ -1,4 +1,4 @@
-# Dialogos (unmaintained)
+# Dialogos
 
 An experimental dialogue system for Dart.
 
